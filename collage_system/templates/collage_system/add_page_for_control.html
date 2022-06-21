@@ -1,0 +1,405 @@
+{% extends 'collage_system/base.html' %}
+{% load static %}
+{% block slideshow %}
+{% endblock slideshow %}
+{% block cards %}
+   <div class="row">
+	  <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+		<ul class="control-panel-list">
+		  <li class="add-items-bar active-li-a"><a class="">Add Lecture</a></li>
+		  <li class="add-items-bar"><a >Add Videos To Tutorial</a></li>
+		  <li class="add-items-bar"><a >Add/Delete Course</a></li>
+		  <li class="add-items-bar"><a >Register Student</a></li>
+		  <li class="add-items-bar"><a >Add/Delete Teacher</a></li>
+		  <li class="add-items-bar"><a>Add Tutorials</a></li>
+		  <li class="add-items-bar"><a>Add Trainer to Tutorials</a></li>
+		  <li class="add-items-bar"><a >Add New Activity/News</a></li>
+		  <li class="add-items-bar"><a >Add Program</a></li>
+		</ul>
+	  </div>
+
+		<!-- Start Add Course -->
+	  <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+		<div class="adding-contents displayAdding">
+			{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-{{ message.tags }} mt-2 w-75" style="list-style-type: none;">
+							{{ message }}
+						</div>
+					{% endfor %}
+			{% endif %}
+		  <div class="col-12 col-sm-12 col-lg-12">
+			<div class="forms-display">
+			  <span class="title-text">New Lecture </span>
+			  <form action="" method="post" enctype="multipart/form-data">
+				  {% csrf_token %}
+				<input type="file" name="lecture_url" MULTIPLE id="file" required class="file-custom" accept="*/*" onchange="javascript:updateList('file','file-name-list')">
+				<label for="file" class="btn-collage">Upload Lecture<sup>&plus;</sup></label>
+				<ul id="file-name-list" >
+
+				</ul>
+				<select name="course" class="form-control col-md-8 mb-3" required  >
+				<option selected disabled>Choose Course that lecture belong</option>
+				  {% for course in courses %}
+					  <option value="{{ course.id }}">{{ course.course_name }}</option>
+				  {% endfor %}
+				</select>
+			  <select name="teacher" class="form-control col-md-8 mb-3" required >
+			  <option selected disabled>Choose teacher that lecture belong</option>
+				  {% for teacher in teachers %}
+					  {% if teacher.user == None %}
+						<option value="{{ teacher.id }}">{{ teacher.teacher_name }}</option>
+					  {% endif %}
+				  {% endfor %}
+				</select>
+				<div class="add-forms-button">
+				  <button type="submit" class="btn-collage float-right" name="add_lecture" >ADD</button>
+				</div>
+			  </form>
+			</div>
+		  </div>
+
+		</div>
+
+		  <!-- End Add Lecture -->
+		  <!-- Start Add Tutorails -->
+
+
+		   <!-- Start Add Lecture -->
+		   <div class="adding-contents ">
+			<div class="col-12 col-sm-12 col-lg-12">
+			  <div class="forms-display">
+				<span class="title-text">Upload Videos To Tutorial </span>
+				<form action="" method="post" enctype="multipart/form-data" class="add-videos-tutorial-form">
+					{% csrf_token %}
+				  <select name="tutorialsteacher" class="form-control col-md-8 mt-2 mb-3 " required >
+				  <option selected disabled>Choose the tutorial trainer that video belong</option>
+					{% for trainer in tutorial_teacher %}
+						<option value="{{ trainer.id }}">{{ trainer.tutorials_name }}/{{ trainer.teacher_name }}</option>
+					{% endfor %}
+				  </select>
+				  <div class="video-upload-button">
+					<input type="file" id="videoFile" name="video" MULTIPLE class="videoFile" required accept="video/*" onchange="javascript:updateList('videoFile','video-name-list')">
+					<label for="videoFile" class="btn-collage"><i class="fa fa-video"></i> Upload Videos</label>
+				  </div>
+				  <ul class="filesScroll-bar" id="video-name-list">
+				  </ul>
+				  <div class="add-forms-button">
+					<button type="submit" class="btn-collage float-right" name="tutorial_video">ADD</button>
+				  </div>
+				</form>
+
+			  </div>
+			</div>
+		  </div>
+		  <div class="adding-contents ">
+			<div class="col-12 col-sm-12 col-lg-12">
+			  <div class="forms-display">
+				<span class="title-text">Add New Course</span>
+				<form action="" method="post" enctype="multipart/form-data" class="course-form">
+					{% csrf_token %}
+					  <div class="form-row">
+						<input type="text" name="course_name" class=" w-75 form-control" required placeholder="Course Name">
+					  </div>
+						<div class="form-row">
+						<select name="major" class="form-control col-md-8 mt-2" multiple required >
+						  <option selected disabled>Choose major that course belong </option>
+						  {% for major in majors %}
+							  <option value="{{ major.id }}">{{ major.major_name }}</option>
+						  {% endfor %}
+						</select>
+					  </div>
+						<p style="display: block"><small>Note: hold Ctrl to choose multiple</small></p>
+					<div class="form-row">
+						<select name="level" class="form-control col-md-8 mt-2 " required  >
+						<option selected disabled>Choose level that course belong</option>
+						  {% for level in levels %}
+							  <option value="{{ level.id }}">level {{ level.level }}</option>
+						  {% endfor %}
+						</select>
+					  </div>
+					<div class="form-row">
+						<select name="semester" class="form-control col-md-8 mt-2"  required  >
+						<option selected disabled>Choose semester that course belong</option>
+							{% for semester in semesters %}
+								<option value="{{ semester.id }}">{{ semester.semester }}</option>
+							{% endfor %}
+						</select>
+					  </div>
+					  <div class="form-row mt-2">
+						<input type="file" name="Course_image" id="courseImgFile"  accept="image/*" required >
+						<label for="courseImgFile" class="btn-collage"><i class="fa fa-image"></i> Upload Image</label>
+					  </div>
+					  <div class="add-forms-button">
+						<button type="submit" class="btn-collage float-right" name="course_form">ADD</button>
+					  </div>
+				</form>
+				<hr>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+				  <span class="title-text">Delete Course</span>
+				  <select name="course" class="form-control col-md-8 mt-2 mb-3" required >
+				  <option selected disabled>Select Course wanna delete</option>
+					{% for course in courses %}
+						<option value="{{ course.id }}">{{ course.course_name }}</option>
+					{% endfor %}
+				  </select>
+				  <div class="add-forms-button">
+					<button type="submit" class="btn btn-danger float-right" name="delete_course">Delete Course</button>
+				  </div>
+
+				</form>
+
+			  </div>
+			</div>
+		  </div>
+		  <div class="adding-contents ">
+			<div class="col-12 col-sm-12 col-lg-12">
+			  <div class="forms-display">
+				<span class="title-text">Register Student </span>
+				<form action="" method="post" enctype="multipart/form-data" class="register-form">
+					{% csrf_token %}
+				  <div class="form-row">
+					<input type="text" name="username" class="form-control" placeholder="Username"  required >
+				  </div>
+				  <div class="form-row mb-2 mt-2">
+					<input type="password" name="password1" class="form-control col-6" placeholder="Password" required >
+					<input type="password" name="password2" class="form-control col-6" placeholder="Confirm Password" required >
+				  </div>
+				  <div class="add-forms-button">
+					<button type="submit" class="btn-collage float-right" name="register_student">Register Now</button>
+				  </div>
+				</form>
+
+			  </div>
+			</div>
+		  </div>
+
+		  <div class="adding-contents ">
+			<div class="col-12 col-sm-12 col-lg-12">
+			  <div class="forms-display">
+				<span class="title-text">Add Teacher </span>
+				<form action="" method="post" enctype="multipart/form-data" class="addingTeacher-form">
+					{% csrf_token %}
+				  <div class="form-row">
+					<input type="text" name="teacher_name" class="form-control" placeholder="Teacher Name" required >
+				  </div>
+				  <div class="form-row mt-2">
+					<input type="file" id="addingTeacherFille" class="imgFile" name="teacher_image"  accept="image/*" required >
+					<label for="addingTeacherFille" class="btn-collage"><i class="fa fa-image"></i> Upload Image</label>
+				  </div>
+				  <div class="form-row">
+					<select name="course" class="form-control col-md-8 mt-2 " multiple required >
+					  <option  disabled>Choose courses that teacher belong</option>
+					  {% for course in courses %}
+						  <option value="{{ course.id }}">{{ course.course_name }}</option>
+					  {% endfor %}
+					</select>
+				  </div>
+					<p style="display: block"><small>Note: Hold Ctrl to choose multiple</small></p>
+				  <div class="add-forms-button">
+					<button type="submit" class="btn-collage float-right" name="teacher_form">Add Teacher</button>
+				  </div>
+				</form>
+				<hr>
+				<form action="" method="post" enctype="multipart/form-data"class="delete-teacher">
+					{% csrf_token %}
+				  <span class="title-text">Delete Teacher </span>
+				  <select name="teacher" class="form-control mb-3 mt-2 col-md-8 " required >
+					<option selected disabled>Select Teacher wanna delete</option>
+					  {% for teacher in teachers %}
+						{% if teacher.user == None %}
+							<option value="{{ teacher.id }}">{{ teacher.teacher_name }}</option>
+						{% endif %}
+					{% endfor %}
+				  </select>
+				  <div class="add-forms-button">
+					<button type="submit" class="btn btn-danger float-right" name="delete_teacher">Delete Teacher</button>
+				  </div>
+				</form>
+			  </div>
+			</div>
+		  </div>
+
+		  	<!-- Start Add Tutorails -->
+		  <div class="adding-contents ">
+			<div class="row">
+			  <div class="col-12 col-sm-12 col-lg-8">
+				<div class="forms-display">
+				  <span class="title-text">New Tutorial </span>
+				  <form action="" method="post" enctype="multipart/form-data" class="add-tutorial-form">
+					{% csrf_token %}
+					<input type="text" name="tutorials_name" class="form-control" placeholder="Tutorial Name" required >
+					<br>
+					  <input type="file" name="tutorials_image" id="tutorialImgFile" class="imgFile"  accept="image/*" required >
+					  <label for="tutorialImgFile" class="btn-collage"><i class="fa fa-image"></i> Choose Image</label>
+					<div class="add-forms-button">
+					  <button type="submit" class="btn-collage float-right" name="tutorial_form">ADD</button>
+					</div>
+				  </form>
+
+				</div>
+			  </div>
+			</div>
+		</div>
+		  <!-- End Add Tutorails -->
+		  <!-- Start Add Trainer to Tutorails -->
+		  <div class="adding-contents ">
+			  <div class="row">
+				<div class="col-12 col-sm-12 col-lg-8">
+				  <div class="forms-display">
+					<span class="title-text">New Trainer Tutorial </span>
+					<form method="post" enctype="multipart/form-data" class="add-tutorial-form">
+					{% csrf_token %}
+					  <input type="text" name='tutorials_name' class="form-control" placeholder="Tutorial Name" required >
+					  <input type="text" name="teacher_name" class="form-control mt-2" placeholder="Teacher Of Tutorial" required >
+					  <br>
+						 <select name="tutorials" class="form-control col-md-8 mb-2" required>
+						 <option selected disabled>Choose course that trainer belong</option>
+							{% for tutorial in Tutorials %}
+								<option value="{{ tutorial.id }}">{{ tutorial.tutorials_name }}</option>
+							{% endfor %}
+						</select>
+					  <br>
+					  <input type="file" name="tutorials_image" id="trainerImgFile" class="imgFile"  accept="image/*" required >
+					  <label for="trainerImgFile" class="btn-collage"><i class="fa fa-image"></i> Choose Image</label>
+					  <br>
+					  <div class="video-upload-button">
+						<input type="file" name="video" id="videoFileT"  required class="videoFile"  accept="Videos/*" MULTIPLE onchange="javascript:updateList('videoFileT','videoT-name-list')">
+						<label for="videoFileT" class="btn-collage"><i class="fa fa-video"></i> Choose Videos</label>
+					  </div>
+					  <!-- If We Want to upload Many Videos  -->
+					  <ul id="videoT-name-list" >
+					  </ul>
+					  <div class="add-forms-button">
+						<button type="submit" name="tutorial_trainer" class="btn-collage float-right">ADD</button>
+					  </div>
+					</form>
+
+				  </div>
+				</div>
+			  </div>
+		  </div>
+		  <!-- End Add Trainer to Tutorails -->
+
+		  <div class="adding-contents ">
+			<div class="col-12 col-sm-12 col-lg-12">
+			  <div class="forms-display">
+				<span class="title-text">Add Activity & News</span>
+				<form action="" method="post" enctype="multipart/form-data" class="activity-form">
+					{% csrf_token %}
+				  <div class="form-row mt-2" style="display: block">
+					<div class="mb-3">
+					  <input type="file" name="activitie_image" id="activityImgFile" class="activityImg"   accept="image/*" required >
+					  <label for="activityImgFile" class="btn-collage"><i class="fa fa-image"></i> Upload Image</label>
+					</div>
+
+					<div class="imgUpload mb-3">
+					  <input type="file" name="activitie_image1" id="activityImgFile1" class="activityImg"   accept="image/*" >
+					  <label for="activityImgFile1" class="btn-collage"><i class="fa fa-image"></i> Upload Image</label>
+					</div>
+
+					<div class="imgUpload mb-3">
+					  <input type="file" name="activitie_image2"  id="activityImgFile2" class="activityImg"   accept="image/*">
+					  <label for="activityImgFile2" class="btn-collage"><i class="fa fa-image"></i> Upload Image</label>
+					</div>
+				  </div>
+				  <div class="form-row">
+					<input type="text" class="form-control" name="activitie_name" placeholder="Activity or News Title" required >
+				  </div>
+				  <div class="form-row mt-2 mb-3">
+					<textarea class="form-control" name="activitie_disc" id="" cols="30" rows="10" placeholder="Activity or News Decription" required ></textarea>
+				  </div>
+				  <div class="add-forms-button">
+					<button type="submit" class="btn-collage float-right" name="activity_form">ADD</button>
+				  </div>
+				</form>
+				<hr>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+				  <span class="title-text">Delete Activity</span>
+				  <select name="activity" class="form-control col-md-8 mt-2 mb-3" required >
+					<option disabled selected>Select Activity wanna delete</option>
+					{% for activity in activities %}
+						<option value="{{ activity.id }}">{{ activity.activitie_name }}</option>
+					{% endfor %}
+				  </select>
+				  <div class="add-forms-button">
+					<button type="submit" class="btn btn-danger float-right" name="delete_activity">Delete Activity</button>
+				  </div>
+
+				</form>
+
+			  </div>
+			</div>
+		  </div>
+
+		  	<div class="adding-contents ">
+			<div class="row">
+			  <div class="col-12 col-sm-12 col-lg-8">
+				<div class="forms-display">
+				  <span class="title-text">New Program </span>
+				  <form action="" method="post" enctype="multipart/form-data" class="add-tutorial-form">
+					{% csrf_token %}
+					<input type="text" name="program_name" class="form-control" placeholder="Program Name" required >
+					<br>
+					  <input type="file" name="program_file" id="programFile" class="programFile" accept="*/*" required >
+					  <label for="programFile" class="btn-collage"><i class="fa fa-file"></i> Choose Program</label>
+					  <p style="display: block"><small>Note: It's suggested to upload programs in compressed types (.zip, .7zip, .rar).</small></p>
+					<div class="add-forms-button">
+					  <button type="submit" class="btn-collage float-right" name="program_form">ADD</button>
+					</div>
+				  </form>
+
+				</div>
+			  </div>
+			</div>
+		</div>
+
+					<!-- End Add Lecture -->
+		  </div>
+	</div>
+		  <!-- End Add Teacher -->
+				  </div>
+		  </div>
+{% endblock cards %}
+{% block jsfiles %}
+	 <script>
+		  updateList = function(fileIn,fileOut) {
+			var input = document.getElementById(fileIn);
+			var output = document.getElementById(fileOut);
+			var children = "";
+			for (var i = 0; i < input.files.length; ++i) {
+				children += '<li>' + input.files.item(i).name + '</li>';
+			}
+			output.innerHTML = '<ul style="display: block" class="filesScroll-bar">'+children+'</ul>';
+			};
+		  var inputs = document.getElementsByClassName("activityImg");
+		  inputs[0].addEventListener("change", function() {
+			if (inputs[0].files.length != 0) {
+			  console.log(this.value)
+			  addNewUploadImage();
+
+			}
+
+		  })
+
+		  var imgUpload = document.getElementsByClassName("imgUpload")
+		  function addNewUploadImage() {
+			   imgUpload[0].style.display = "block";
+			  }
+
+
+		  imgUpload[0].firstElementChild.addEventListener("change", function() {
+			if (this.files.length != 0) {
+			  console.log(this.value)
+			  addThirdUploadImage();
+
+		  }
+		  })
+
+		  function addThirdUploadImage() {
+			imgUpload[1].style.display = "block"
+		  }
+	</script>
+{% endblock jsfiles %}

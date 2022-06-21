@@ -1,0 +1,223 @@
+{% url 'home' as home_url %}
+{% url 'major' as courses_url %}
+{% url 'tutorials' as tutorials_url %}
+{% url 'activities' as activities_url %}
+{% url 'control' as control_url %}
+{% url 'add' as add_url %}
+{% url 'suggandcomp' as suggandcomp_url %}
+{% url 'program_page' as program_url %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>Collage server | {{ title }}</title>
+    {% else %}
+        <title>Collage server</title>
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'collage_system/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'collage_system/css/all.min.css' %}">
+    <link rel="shortcut icon" href="{% static 'collage_system/images/white logo.png' %}">
+    <link rel="stylesheet" href="{% static 'collage_system/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'collage_system/css/style.css' %}">
+</head>
+<body>
+  <header>
+
+    <div class="container">
+      <div class="row header-row">
+          <div class="logo">
+              <a href="{% url 'home' %}" class="logo"><img src="{% static 'collage_system/images/logo.png' %}"></a></a>
+          </div>
+          <div class="background-black"></div>
+              <nav>
+    <ul>
+          <li class="{% if nav_path == home_url %} active {% endif %}"><a href="{% url 'home' %}"><i class="fa fa-home"></i> Home</a></li>
+          <li class="{% if nav_path == courses_url %} active {% endif %}"><a href="{% url 'major' %}">Courses</a></li>
+          <li class="{% if nav_path == tutorials_url %} active {% endif %}"><a href="{% url 'tutorials' %}">Tutorials</a></li>
+          <li class="{% if nav_path == program_url %} active {% endif %}"><a href="{% url 'program_page' %}">Programs</a></li>
+          <li class="{% if nav_path == activities_url %} active {% endif %}"><a href="{% url 'activities' %}">Activities</a></li>
+          {% if request.user.is_superuser %}
+            <li class="{% if nav_path == control_url %} active {% endif %}"><a href="{% url 'control' %}">Control</a></li>
+            <li class="{% if nav_path == suggandcomp_url %} active {% endif %}"><a href="{% url 'suggandcomp' %}">Sugg/Comp</a></li>
+          {% elif request.user.is_authenticated %}
+              <li class="{% if nav_path == add_url %} active {% endif %}"><a href="{% url 'add' %}">Add<sup>&#43;</sup></a></li>
+          {% endif %}
+      </ul>
+    <div class="right-bar-container">
+                    {% block form %}
+                    {% endblock form %}
+                    {% if request.user.is_authenticated %}
+                        <div class="login-container">
+                            <a>
+                                {{ request.user.username }} <i class="fa fa-caret-down" aria-hidden="true"></i>
+                              </a>
+                            <div class="login-dropdown dropdown-login-out ">
+                                {% if request.user.is_superuser %}
+                                    <a href="{% url 'logout' %}">
+                                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                                        logout
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'profile' %}">
+                                        <i class="fa fa-user-edit" ></i> Profile
+                                    </a>
+                                    <a href="{% url 'logout' %}">
+                                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                                        logout
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="login-container">
+                              <a>
+                                <i class="fa fa-user"></i>
+                                Login <i class="fa fa-caret-down" aria-hidden="true"></i>
+                              </a>
+                              <div class="login-dropdown">
+                                <form method="post">
+                                    {% csrf_token %}
+                                  <input type="text" name='username' placeholder="Username" class="form-control">
+                                  <input type="password" name='password' placeholder="Password" class="form-control">
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ message.tags }} mt-2">
+                                            {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                  <button type="submit" name='login_form'>Login</button>
+                                </form>
+                              </div>
+                        </div>
+                    {% endif %}
+              </div>
+        </nav>
+      </div>
+    </div>
+    <div class="navbar-container">
+      <span class="top"></span>
+      <span class="midel"></span>
+      <span class="last"></span>
+    </div>
+</header>
+    <main>
+    {% block slideshow %}
+        <div id="Carousel" class="carousel slide  " data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+
+              <li data-target="#Carousel" data-slide-to="1"></li>
+
+              <li data-target="#Carousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" >
+              <div class="carousel-item active" data-interval="3000">
+                <img src="{% static 'collage_system/images/slide1.jpg' %}" class="d-block w-100 " alt="slide1">
+              </div>
+
+              <div class="carousel-item" data-interval="3000">
+                <img src="{% static 'collage_system/images/slide2.jpg' %}" class="d-block w-100" alt="slide2">
+              </div>
+            <div class="carousel-item" data-interval="3000">
+                <img src="{% static 'collage_system/images/slide3.jpg' %}" class="d-block w-100" alt="slide3">
+              </div>
+            </div>
+
+        </div>
+    {% endblock slideshow %}
+          <div class="container mt-5">
+            {% block cards %}
+            {% endblock cards %}
+          </div>
+    </main>
+
+    <footer>
+      <!-- Modal -->
+      
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalCenterTitle">Suggestions/Complaints</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: black;">&times;</span>
+                      </button>
+                    </div>
+                   <form method="post" enctype="multipart/form-data">
+                       {% csrf_token %}
+                        <div class="modal-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" placeholder="Enter Your Name" name="proposal" >
+                                        </div>
+                                         <div class="col-12 mt-3">
+                                            <textarea class="form-control" name="sugg_dics" placeholder="Enter Suggestions Or Complaints"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+      
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" name="suggestion_form">Send <i class="fa fa-paper-plane"></i></button>
+                        </div>
+                   </form>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-4 ">
+                      <a href="#" class="footer-logo"><img src="{% static 'collage_system/images/logo.png' %}"></a>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-8 text-center">
+                      <div id="footer-rights" class="row">
+                          <div class="col-12 col-sm">
+                              <span>All Rights Reserved 2020</span><sup>&copy;</sup>
+                          </div>
+                          <div class="col-12 col-sm">
+                              <button type="button" class="span-suggestion" data-toggle="modal" data-target="#exampleModalCenter">
+                                  <i class="fa fa-edit" style="color:#0078f8ad ">
+                                  </i> Suggestions/Complaints
+                              </button>
+                          </div>
+      
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="container-fluid">
+                  <div class="row" style="border-top:1px solid lightgray">
+                      <div class="col-12 col-sm text-center">
+                          <span style="font-size: 16px">Made with <span class="heart">&hearts;</span> by MMA</span>
+                      </div>
+                  </div>
+              </div>
+          </footer>
+
+    <script src="{% static 'collage_system/js/all.js' %}"></script>
+    <script src="{% static 'collage_system/js/jquery.js.js' %}"></script>
+    <script src="{% static 'collage_system/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'collage_system/js/bootstrap.js' %}"></script>
+    <script src="{% static 'collage_system/js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'collage_system/js/app.js' %}"></script>
+    {% block jsfiles %}
+    {% endblock jsfiles %}
+{#    <script src="{% static 'collage_system/js/scroll-out.js' %}"></script>#}
+{#    <script>#}
+{#      ScrollOut({#}
+{#        once:true#}
+{#      });#}
+{#    </script>#}
+
+
+</body>
+</html>

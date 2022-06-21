@@ -1,0 +1,64 @@
+
+<nav>
+    <ul>
+          <li class="{% if nav_path == home_url %} active {% endif %}"><a href="{% url 'home' %}"><i class="fa fa-home"></i> Home</a></li>
+          <li class="{% if nav_path == courses_url %} active {% endif %}"><a href="{% url 'major' %}">Courses</a></li>
+          <li class="{% if nav_path == tutorials_url %} active {% endif %}"><a href="{% url 'tutorials' %}">Tutorials</a></li>
+          <li class="{% if nav_path == activities_url %} active {% endif %}"><a href="{% url 'activities' %}">Activities</a></li>
+          {% if request.user.is_superuser %}
+            <li class="{% if nav_path == control_url %} active {% endif %}"><a href="{% url 'control' %}">Control</a></li>
+          {% elif request.user.is_authenticated %}
+              <li class="{% if nav_path == add_url %} active {% endif %}"><a href="{% url 'add' %}">Add<sup>&#43;</sup></a></li>
+          {% endif %}
+      </ul>
+    <div class="right-bar-container">
+            <form method="get">
+                <input type="text" name="course_containe" placeholder="Looking for course....?"><button type="submit" ><i class="fa fa-search"></i></button>
+            </form>
+            {% if request.user.is_authenticated %}
+                <div class="login-container">
+                    <a>
+                        {{ request.user.username }} <i class="fa fa-caret-down" aria-hidden="true"></i>
+                      </a>
+                    <div class="login-dropdown dropdown-login-out ">
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'logout' %}">
+                                <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                                logout
+                            </a>
+                        {% else %}
+                            <a href="{% url 'profile' %}">
+                                <i class="fa fa-user-edit" ></i> Profile
+                            </a>
+                            <a href="{% url 'logout' %}">
+                                <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                                logout
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="login-container">
+                      <a>
+                        <i class="fa fa-user"></i>
+                        Login <i class="fa fa-caret-down" aria-hidden="true"></i>
+                      </a>
+                      <div class="login-dropdown">
+                        <form method="post">
+                            {% csrf_token %}
+                          <input type="text" name='username' placeholder="Teacher Username" class="form-control">
+                          <input type="password" name='password' placeholder="Password" class="form-control">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} mt-2">
+                                    {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                          <button type="submit">Login</button>
+                        </form>
+                      </div>
+                </div>
+            {% endif %}
+      </div>
+</nav>

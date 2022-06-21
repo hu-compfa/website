@@ -1,0 +1,4 @@
+<option value="" selected disabled >Select course that lecture belong</option>
+{% for course in courses %}
+    <option value="{{ course.id }}">{{ course.course_name }}</option>
+{% endfor %}
