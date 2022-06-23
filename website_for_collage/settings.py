@@ -19,16 +19,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+dotenv.load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kb(p%$s0w830o)g^6*cq(%8c=wl7m&k)@h_vhmz48s^#_ck#qc'
+SECRET_KEY = os.getenv('SECERT_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-dotenv.load_dotenv()
-env = True
-if (os.getenv('environment') == 'production'):
-	env = False
-DEBUG = env
+DEBUG = os.getenv("ENVIRONMENT") == "production"
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,8 +121,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT=os.path.join(BASE_DIR,'static')
+STATIC_ROOT=''
 STATIC_URL = '/static/'
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
 MEDIA_URL='/media/'
