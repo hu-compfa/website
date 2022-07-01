@@ -84,4 +84,17 @@ __pycache__/
 local_settings.py
 .env
 *.sqlite3
-media/
+
+
+### Media ###
+media/*
+!media/major_pic
+*media/major_pic/*
+!*media/major_pic/l1.png
+!*media/major_pic/l2.png
+!*media/major_pic/l3.png
+!*media/major_pic/l4.png
+!*media/major_pic/cs.png
+!*media/major_pic/it.png
+!*media/major_pic/s1.png
+!*media/major_pic/s2.png
