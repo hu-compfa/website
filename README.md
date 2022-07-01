@@ -7,4 +7,4 @@
 ## Developed By
 Mohammed Al Attas [(@dev_muh)](https://twitter.com/dev_muh)
 ## Maintained By
-Abdullah Binsaad, Hafidh Bin Dehri
+Abdullah Binsaad [(iiAbady)](https://github.com/iiAbady)
