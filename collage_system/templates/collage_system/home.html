@@ -1,74 +1,76 @@
-{% extends 'collage_system/base.html' %}
-{% block form %}
-    <form method="get">
-        <input type="text" name="course_containe" placeholder="Looking for course.?"><button type="submit" ><i class="fa fa-search"></i></button>
-    </form>
-{% endblock form %}
-{% load static %}
-{% block cards%}
-    <span class="title-text">{{ head }}</span>
-  <div class="row">
-        {% if filter.qs.count == all_courses.all.count %}
-            <div class="col-11 ml-3 ml-sm-0 mt-3 col-sm-6 col-md-4 col-lg-3" data-scroll>
-                  <a href="{% url 'major' %}">
-                    <div class="basic-card">
-                      <div class="basic-card-image-container">
-                        <img src="{% static 'collage_system/images/courses.jpg' %}">
-                      </div>
-                      <div class="basic-card-title btn-collage w-100">Courses</div>
-                    </div>
-                  </a>
-            </div>
-            <div class="col-11 ml-3 ml-sm-0  mt-3 col-sm-6 col-md-4 col-lg-3" data-scroll>
-                  <a href="{% url 'tutorials' %}">
-                    <div class="basic-card">
-                      <div class="basic-card-image-container">
-                        <img src="{% static 'collage_system/images/tutorials.jpg' %}">
-                      </div>
-                      <div class="basic-card-title btn-collage w-100">Tutorials</div>
-                    </div>
-                  </a>
-            </div>
-            <div class="col-11 ml-3 ml-sm-0  mt-3 col-sm-6 col-md-4 col-lg-3" data-scroll>
-                  <a href="{% url 'program_page' %}">
-                    <div class="basic-card">
-                      <div class="basic-card-image-container">
-                        <img src="{% static 'collage_system/images/programs.jpg' %}">
-                      </div>
-                      <div class="basic-card-title btn-collage w-100">Programs</div>
-                    </div>
-                  </a>
-            </div>
-            <div class="col-11 ml-3 ml-sm-0  mt-3 col-sm-6 col-md-4 col-lg-3" data-scroll>
-                  <a href="{% url 'activities' %}">
-                    <div class="basic-card">
-                      <div class="basic-card-image-container">
-                        <img src="{% static 'collage_system/images/activities.jpg' %}">
-                      </div>
-                      <div class="basic-card-title btn-collage w-100">Activities</div>
-                    </div>
-                  </a>
-            </div>
+{% extends 'collage_system/base.html' %} {% block form %}
+<form method="get">
+	<input
+		type="text"
+		name="course_containe"
+		placeholder="Looking for course.?"
+	/><button type="submit"><i class="fa fa-search"></i></button>
+</form>
+{% endblock form %} {% load static %} {% block cards%}
+<span class="title-text">{{ head }}</span>
+<div class="row">
+	{% if filter.qs.count == all_courses.all.count %}
+	<div class="col-11 ml-3 ml-sm-0 mt-3 col-sm-6 col-md-4 col-lg-3" data-scroll>
+		<a href="{% url 'major' %}">
+			<div class="basic-card">
+				<div class="basic-card-image-container">
+					<img src="{% static 'collage_system/images/courses.jpg' %}" />
+				</div>
+				<div class="basic-card-title btn-collage w-100">Courses</div>
+			</div>
+		</a>
+	</div>
+	<div class="col-11 ml-3 ml-sm-0 mt-3 col-sm-6 col-md-4 col-lg-3" data-scroll>
+		<a href="{% url 'tutorials' %}">
+			<div class="basic-card">
+				<div class="basic-card-image-container">
+					<img src="{% static 'collage_system/images/tutorials.jpg' %}" />
+				</div>
+				<div class="basic-card-title btn-collage w-100">Tutorials</div>
+			</div>
+		</a>
+	</div>
+	<div class="col-11 ml-3 ml-sm-0 mt-3 col-sm-6 col-md-4 col-lg-3" data-scroll>
+		<a href="{% url 'program_page' %}">
+			<div class="basic-card">
+				<div class="basic-card-image-container">
+					<img src="{% static 'collage_system/images/programs.jpg' %}" />
+				</div>
+				<div class="basic-card-title btn-collage w-100">Programs</div>
+			</div>
+		</a>
+	</div>
+	<div class="col-11 ml-3 ml-sm-0 mt-3 col-sm-6 col-md-4 col-lg-3" data-scroll>
+		<a href="{% url 'activities' %}">
+			<div class="basic-card">
+				<div class="basic-card-image-container">
+					<img src="{% static 'collage_system/images/activities.jpg' %}" />
+				</div>
+				<div class="basic-card-title btn-collage w-100">Activities</div>
+			</div>
+		</a>
+	</div>
 
-        {% elif filter.qs.count == 0  %}
-            <h2 class="ml-5">We don't find the course</h2>
-        {% else %}
-            {% for course in filter.qs %}
-                  {% if course.teacher_set.all.count == 0 %}
-                  {% else %}
-                  <div class="col-6 mt-2 col-sm-6 col-md-3" data-scroll>
-                      <a href="{% url 'teacher' course.major.first course.level.level course.semester.semester course.slug %}">
-                          <div class="basic-card">
-                              <div class="basic-card-image-container">
-                                    <img src="{{ course.Course_image.url }}">
-                              </div>
-                              <div class="basic-card-title btn-collage w-100">{{ course.course_name }}</div>
-                          </div>
-
-                      </a>
-                  </div>
-                  {% endif %}
-              {% endfor %}
-        {% endif %}
-  </div>
+	{% elif filter.qs.count == 0 %}
+	<h2 class="ml-5">We don't find the course</h2>
+	<!-- prettier-ignore -->
+	{% else %} {% for course in filter.qs %} 
+  {% if course.teacher_set.all.count == 0 %}
+  {% else %}
+	<div class="col-6 mt-2 col-sm-6 col-md-3" data-scroll>
+		<a
+			href="{% url 'teacher' course.major.first course.level.level course.semester.semester course.slug %}"
+		>
+			<div class="basic-card">
+				<div class="basic-card-image-container">
+					<img src="{{ course.Course_image.url }}" />
+				</div>
+				<div class="basic-card-title btn-collage w-100">
+					{{ course.course_name }}
+				</div>
+			</div>
+		</a>
+	</div>
+	{% endif %} {% endfor %} {% endif %}
+</div>
 {% endblock %}

@@ -1,5 +1,20 @@
 from django.contrib import admin
-from .models import Student,Major,Program,Level,Courses,SuggAndComp,Courses_files,Semester,Activities,Teacher,Tutorials,TutorialsTeacher,TutorialsVideos
+from .models import (
+    Student,
+    Major,
+    Program,
+    Level,
+    Courses,
+    SuggAndComp,
+    Courses_files,
+    Semester,
+    Activities,
+    Teacher,
+    Tutorials,
+    TutorialsTeacher,
+    TutorialsVideos,
+)
+
 # Register your models here.
 admin.site.register(Major)
 admin.site.register(Level)
@@ -14,6 +29,3 @@ admin.site.register(TutorialsVideos)
 admin.site.register(SuggAndComp)
 admin.site.register(Program)
 admin.site.register(Student)
-
-
-
