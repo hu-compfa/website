@@ -1,10 +1,15 @@
+# Windows WSGI
 import os
 import sys
 import site
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Add the site-packages of the chosen virtualenv to work with
+site.addsitedir(os.path.join(BASE_DIR, 'env', 'Lib', 'site-packages'))
+
 
 # Add the app's directory to the PYTHONPATH
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
 sys.path.append(os.path.dirname(__file__))
 
