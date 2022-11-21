@@ -26,7 +26,7 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 SECRET_KEY = getenv("SECERT_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("ENVIORMENT") != "production" 
+DEBUG = getenv("ENVIORMENT") != "production"
 
 ALLOWED_HOSTS = ["*"]
 
@@ -122,7 +122,7 @@ USE_TZ = True
 
 # STATICFILES_DIRS = [path.join(BASE_DIR, "college\static")]
 STATIC_URL = "static/"
-STATIC_ROOT = path.join(BASE_DIR, "website",  "static")
+STATIC_ROOT = path.join(BASE_DIR, "website", "static")
 MEDIA_URL = "media/"
 MEDIA_ROOT = path.join(BASE_DIR, "media")
 
