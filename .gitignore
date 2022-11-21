@@ -98,3 +98,17 @@ media/*
 !*media/major_pic/it.png
 !*media/major_pic/s1.png
 !*media/major_pic/s2.png
+
+
+### Static ###
+website/static/*
+!website/static/website/
+*website/static/website/*
+
+!website/static/website/js
+*website/static/website/js/*
+!*website/static/website/js/app.js
+
+!website/static/website/css
+*website/static/website/css/*
+!*website/static/website/css/style.css

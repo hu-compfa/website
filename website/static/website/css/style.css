@@ -1,0 +1,1799 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@font-face {
+  font-family: poppins;
+  src: url(../fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+  font-family: arabic;
+  src: url(../fonts/sst-arabic-medium.ttf);
+}
+
+::-moz-selection {
+  background-color: #275eb1;
+  color: white;
+}
+
+::selection {
+  background-color: #275eb1;
+  color: white;
+}
+
+body {
+  font-family: "poppins" sans-serif !important;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(0, 84, 211, 0.616);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+[data-scroll] {
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+[data-scroll="in"] {
+  opacity: 1 0.5s;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+[data-scroll="out"] {
+  opacity: 0 0.5s;
+  -webkit-transform: translateY(200px);
+          transform: translateY(200px);
+}
+
+/* Start Navbar Logo*/
+header {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  border-bottom: 2px solid rgba(0, 84, 211, 0.123);
+  background-color: white;
+  z-index: 20;
+  -webkit-box-shadow: 0px 1px 20px 1px lightgray;
+          box-shadow: 0px 1px 20px 1px lightgray;
+}
+
+.navbar-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  right: 26px;
+  top: 15px;
+  cursor: pointer;
+  display: none;
+  opacity: 1;
+}
+
+.navbar-container span {
+  position: absolute;
+  top: 0em;
+  right: 0;
+  width: 35px;
+  height: 3px;
+  border-radius: 10px;
+  background-color: #0686c0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  z-index: 30;
+}
+
+.navbar-container .top {
+  top: 20%;
+}
+
+.navbar-container .midel {
+  top: 40%;
+}
+
+.navbar-container .last {
+  top: 60%;
+}
+
+.close .top {
+  top: 40%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.close .last {
+  top: 40%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.close .midel, .close .last {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.logo {
+  width: 140px;
+  height: 70px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: calc(100% - 140px);
+  position: relative;
+}
+
+.active {
+  background-color: #0688c3;
+}
+
+nav .active a {
+  color: white;
+}
+
+nav ul {
+  padding: 0px 0px 0px 40px;
+  margin: 0;
+  float: right;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  letter-spacing: 1px;
+  color: #0688c3;
+}
+
+nav ul li:hover a {
+  color: white;
+}
+
+nav ul li:hover:not(.active) {
+  background-color: rgba(76, 127, 202, 0.616);
+}
+
+.right-bar-container {
+  min-width: 33%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.right-bar-container form {
+  border: none;
+  border-bottom: 1px solid #007bff;
+  width: 55%;
+}
+
+.right-bar-container form input {
+  border: none;
+  background-color: transparent;
+  outline-style: none;
+  width: 88%;
+}
+
+.right-bar-container form button {
+  border: none;
+  color: #007bff;
+  background-color: transparent;
+  outline-style: none;
+}
+
+.right-bar-container a {
+  text-decoration: none;
+  letter-spacing: 1px;
+  color: #0688c3;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.right-bar-container a:hover {
+  color: #275eb1;
+}
+
+.right-bar-container .login-container {
+  color: #275eb1;
+  cursor: pointer;
+  position: relative;
+  margin-left: auto;
+}
+
+
+
+.right-bar-container .login-dropdown {
+  position: absolute;
+  top: 190%;
+  left: -20%;
+  width: 25vh;
+  display: none;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 500;
+}
+.right-bar-container .dropdown-login-out {
+  width: 20vh !important;
+}
+.right-bar-container .login-dropdown form {
+  width: 100%;
+  border: 0px;
+}
+
+.right-bar-container .login-dropdown input {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.right-bar-container .login-dropdown input[type="checkbox"] {
+  width: 10%;
+  margin-top: 5px;
+}
+
+.right-bar-container .login-dropdown button {
+  color: white;
+  background-color: #0688c3;
+  border-color: rgba(39, 94, 177, 0.8);
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 5px;
+  outline-style: none;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  margin-top: 5px;
+  width: 100%;
+}
+.right-bar-container .login-container .login-dropdown a {
+    margin-left: 20px;
+    display: block;
+    color: #275eb1;
+}
+.right-bar-container .login-container .login-dropdown a .fa-sign-out-alt, .right-bar-container .login-container .login-dropdown a .fa-user-edit {
+    color: black;
+}
+
+.right-bar-container .login-dropdown button:hover {
+  background-color: #275eb1;
+  color: white;
+}
+
+.opacity-menu {
+  opacity: 1 !important;
+  -webkit-transition: opacity 0.5s ease !important;
+  transition: opacity 0.5s ease !important;
+}
+@media (max-width:1024px) {
+  .right-bar-container .login-dropdown {
+    left: -55%;
+    width: 11vh
+  }
+}
+@media (max-width: 995px) {
+  .displayingNav {
+    right: 0% !important;
+  }
+  .hiddeingNav {
+    right: -140% !important;
+  }
+  .navbar-container {
+    display: block;
+  }
+  nav .active {
+    background: white;
+  }
+  nav .active a {
+    color: black;
+  }
+  nav {
+    position: absolute;
+    right: -140%;
+    top: 100%;
+    width: 100%;
+    height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    background-color: #0688c3;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    z-index: 150;
+  }
+  nav ul {
+    margin-top: 30px;
+  }
+  nav ul li {
+    display: block;
+    padding: 10px 10px;
+    text-align: center;
+  }
+  nav ul li a {
+    color: white;
+  }
+  nav ul li a:hover {
+    color: black;
+  }
+  nav ul li:hover {
+    background-color: white;
+  }
+  nav ul li:hover a {
+    color: black;
+  }
+  nav ul li:hover:not(.active) {
+    background-color: transparent;
+  }
+  .right-bar-container {
+    width: 27%;
+    margin-top: 5px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .right-bar-container .login-container {
+    margin-bottom: 10px;
+    text-align: center;
+    margin-left: 15px;
+  }
+  .right-bar-container .login-container a {
+    color: white;
+    margin-left: 24px;
+  }
+  .right-bar-container .login-container a:hover {
+    color: black;
+  }
+  .right-bar-container .login-container .login-dropdown {
+    position: relative;
+    top: 0;
+    left: 25px;
+    opacity: 1;
+    display: none;
+    width: 100%;
+    min-height: 20px;
+    margin-top: 5px;
+  }
+  .right-bar-container .login-container .dropdown-login-out {
+    width: 90% !important;
+  }
+  .right-bar-container .login-container .dropdown-login-out a {
+    margin-left: 0px;
+  }
+  .right-bar-container .login-container .login-dropdown form {
+    margin-left: 0;
+  }
+
+  .right-bar-container .login-container .login-dropdown form button {
+    float: none;
+  }
+  .right-bar-container .login-container .login-dropdown form input {
+    margin-top: 5px;
+    width: 100%;
+    color: black;
+  }
+  .right-bar-container .login-container .login-dropdown form input::-webkit-input-placeholder {
+    color: #b1b1b1;
+    width: 100%;
+  }
+  .right-bar-container .login-container .login-dropdown form input:-ms-input-placeholder {
+    color: #b1b1b1;
+    width: 100%;
+  }
+  .right-bar-container .login-container .login-dropdown form input::-ms-input-placeholder {
+    color: #b1b1b1;
+    width: 100%;
+  }
+  .right-bar-container .login-container .login-dropdown form input::placeholder {
+    color: #b1b1b1;
+    width: 100%;
+  }
+  .right-bar-container .login-container .login-dropdown form input[type="checkbox"] {
+    width: 10%;
+    text-align: left;
+  }
+  .right-bar-container form {
+    border-bottom: 1px solid white;
+    margin-left: 38px;
+    width: 128%;
+  }
+  .right-bar-container form button {
+    color: white;
+    float: right;
+  }
+  .right-bar-container form input {
+    width: 85%;
+    color: white;
+  }
+  .right-bar-container form input::-webkit-input-placeholder {
+    color: white;
+  }
+  .right-bar-container form input:-ms-input-placeholder {
+    color: white;
+  }
+  .right-bar-container form input::-ms-input-placeholder {
+    color: white;
+  }
+  .right-bar-container form input::placeholder {
+    color: white;
+  }
+}
+
+@media (min-width: 765px) {
+  /* .search-bar-container  {
+        width: 39%;
+    } */
+}
+
+@media (max-width: 550px) {
+  .background-black {
+    background-color: rgba(0, 0, 0, 0.11);
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    position: absolute;
+    top: 70px;
+    right: -130%;
+  }
+  nav {
+    width: 70%;
+    z-index: 500;
+    background-color: #0688c3;
+  }
+  .nav-container {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.548);
+  }
+  .right-bar-container {
+    width: 50%;
+  }
+  .right-bar-container form input {
+    width: 85%;
+  }
+  .login-container {
+    width: 120%;
+  }
+}
+
+/* End Navbar Logo*/
+.title-text {
+  position: relative;
+  font-size: 35px;
+  margin: 0px 0px 50px;
+  display: inline-block;
+}
+
+.title-text::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: -10%;
+  height: 5px;
+  background: rgba(39, 94, 177, 0.8);
+}
+
+@media (max-width: 990px) {
+  .title-text {
+    font-size: 25px;
+    margin-bottom: 25px;
+  }
+  .title-text::after {
+    height: 2px;
+  }
+}
+
+/* Start Main */
+main {
+  padding: 71px 0px 100px 0px;
+  min-height: calc(100vh - 82px - 45px);
+}
+
+.carousel-inner {
+  max-height: 400px;
+
+}
+
+/* Start Index Page*/
+.basic-card {
+  -webkit-box-shadow: 0px 5px 30px 1px rgba(0, 0, 0, 0.219);
+          box-shadow: 0px 5px 30px 1px rgba(0, 0, 0, 0.219);
+  border-radius: 10px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  height: 97%;
+}
+
+.basic-card img {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.basic-card:hover {
+  -webkit-box-shadow: 0px -0.3px 1px 1px #d3d3d35c;
+          box-shadow: 0px -0.3px 1px 1px #d3d3d35c;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.basic-card-image-container img {
+  width: 100%;
+  cursor: pointer;
+}
+
+.basic-card-title {
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  font-weigborder-radius: 0px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;ht: 500;
+  position: relative;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* End Index Page*/
+/* Start Level Page */
+/* End Level Page */
+/* Start Courses Page*/
+.courses-container a {
+  font-size: 15px;
+}
+
+@media (max-width: 500px) {
+  #courseContainer h1 {
+    font-size: 25px;
+  }
+}
+
+/* End Courses Page*/
+/* Start Activities Page*/
+.activity-card-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  direction: rtl;
+  text-align: right;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  height: 250px;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.activity-card-container:hover {
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-box-shadow: 0px 5px 20px 5px lightgray;
+          box-shadow: 0px 5px 20px 5px lightgray;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.activity-card-container .activity-image {
+  width: 50%;
+  height: 100%;
+}
+.activity-card-container .activity-image .carousel-inner {
+  border-radius: 5px
+}
+
+.activity-card-container .activity-image img {
+  width: 100%;
+  height: 250px;
+}
+
+.activity-card-container .activity-description {
+  padding: 15px;
+  font-family: "arabic";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 50%;
+  position: relative;
+}
+
+.activity-card-container .activity-description .description-body {
+  font-size: 14px;
+  line-height: 1.5rem;
+  padding-left: 10px;
+  white-space: revelant;
+  overflow-y: scroll;
+  text-overflow: ellipsis;
+  scroll-behavior: smooth;
+  margin-bottom: 3px;
+}
+
+.activity-card-container .activity-description .description-body::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.activity-card-container .activity-description .description-body::-webkit-scrollbar-track {
+  background: white;
+}
+
+.activity-card-container .activity-description .description-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 84, 211, 0.616);
+}
+
+.activity-card-container .activity-description small {
+  display: block;
+  margin-top: 20px;
+  font-family: sans-serif;
+  text-align: end;
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  color: #888888;
+}
+
+.activity-card-container .flex-reverse {
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: reverse !important;
+      -ms-flex-direction: row-reverse !important;
+          flex-direction: row-reverse !important;
+}
+
+@media (min-width: 1200px) {
+  .activity-card-container .activity-image {
+    width: 40%;
+  }
+  .activity-card-container .activity-description {
+    width: 60%;
+  }
+  .activity-card-container .activity-description .title {
+    font-size: 25px;
+  }
+  .activity-card-container .activity-description .description-body {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .activity-card-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .activity-card-container .activity-description .title {
+    font-size: 18px;
+  }
+  .activity-card-container .activity-description .description-body {
+    font-size: 13px;
+  }
+  .container div.activity-card-container:nth-child(odd) {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 765px) {
+  .activity-card-container {
+    width: 100%;
+    height: 600px;
+  }
+  .activity-description {
+    width: 100%;
+  }
+  .activity-card-container .activity-image {
+    width: 100%;
+    height: 50%;
+  }
+  .activity-card-container .activity-image img {
+    height: 300px;
+  }
+  .activity-card-container .activity-description {
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 50%;
+  }
+  .activity-card-container .activity-description .title {
+    font-size: 16px;
+  }
+  .activity-card-container .activity-description .description-body {
+    font-size: 13px;
+  }
+  .container .activity-card-container:nth-child(odd) {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media (max-width: 665px) {
+  .activity-card-container {
+    width: 100%;
+    height: 600px;
+  }
+}
+
+/* End Activities Page*/
+/* Start Lectures Page*/
+.lecture-container {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.lecture-container .title-text {
+  font-size: 30px;
+}
+
+.lecture-container hr {
+  width: 90%;
+}
+
+@media (max-width: 990px) {
+  .lecture-container .title-text {
+    font-size: 22px;
+  }
+}
+
+/* End Lectures Page*/
+/* End Main */
+/* Start Footer */
+footer {
+  border-top: 2px solid #3471ce26;
+  position: relative;
+  text-align: center;
+}
+
+footer #footer-rights div span{
+  font-size: 18px;
+  color: #0078f8;
+  padding: 40px 0px 0px 0px;
+  display: inline-block;
+}
+footer span:last-child {
+  font-size: 18px;
+  color: #0078f8;
+  padding:0px;
+  display: inline-block;
+}
+.span-suggestion {
+  font-size:17px!important;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0px!important;
+  margin-top: 40px;
+  color: #0078f8!important;
+}
+.heart {
+  color: red!important;
+}
+footer sup {
+  font-size: 14px;
+  color: #0078f8;
+  padding: 40px 0px 0px 0px;
+}
+
+.footer-logo img {
+  height: 100px;
+  width: 150px;
+}
+@media (max-width: 765px) {
+  #footer-rights {
+    flex-direction: column-reverse !important;
+  }
+}
+/* End Footer */
+/* Strat add-File-course page*/
+/* End ADD Lecture Content */
+/* End add-File-course page*/
+/* Start Tutorials Page*/
+.tutorial-image-container {
+  position: relative;
+  width: 100%;
+  height: 215px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tutorial-image-container h5 {
+  position: absolute;
+  color: white;
+  opacity: 0;
+  -webkit-transition: opacity .5s ease;
+  transition: opacity .5s ease;
+  z-index: 2;
+}
+
+.tutorial-image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0px;
+  height: 100%;
+  z-index: 1;
+  border-radius: 10px;
+  background-color: rgba(55, 110, 161, 0.774);
+  -webkit-transition: all 0.3s cubic-bezier(1, 0.99, 0, 0.05);
+  transition: all 0.3s cubic-bezier(1, 0.99, 0, 0.05);
+}
+
+.tutorial-image-container:hover {
+  -webkit-box-shadow: 0px 10px 50px 5px rgba(0, 0, 0, 0.226);
+          box-shadow: 0px 10px 50px 5px rgba(0, 0, 0, 0.226);
+}
+
+.tutorial-image-container:hover::after {
+  width: 100%;
+}
+
+.tutorial-image-container:hover h5 {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease;
+  transition: opacity .5s ease;
+  text-shadow: 0px 1px white;
+}
+
+.tutorials-card img {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 500px) {
+    .tutorial-image-container{
+      margin-bottom: 20px;
+      height: 150px;
+    }
+}
+/* END Tutorials Page*/
+/* Start Tutorials Teachers Page */
+.tutorials-teachers-card-container {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 0;
+  position: relative;
+}
+
+.tutorials-teachers-image-container {
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.tutorials-teachers-image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+  border-radius: 5px;
+  background-color: #0688c3;
+  -webkit-transition: all 0.3s cubic-bezier(1, 0.99, 0, 0.05);
+  transition: all 0.3s cubic-bezier(1, 0.99, 0, 0.05);
+}
+
+.tutorials-teachers-image-container button {
+  position: absolute;
+  color: white;
+  opacity: 0;
+  -webkit-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+  z-index: 2;
+  top: 35%;
+  left: 25%;
+  width: 50% !important;
+  text-transform: uppercase;
+}
+
+.tutorials-teachers-card-container:hover {
+  -webkit-box-shadow: 0px 5px 30px 5px lightgray;
+          box-shadow: 0px 5px 30px 5px lightgray;
+}
+
+.tutorials-teachers-card-container:hover .tutorials-teachers-image-container::after {
+  width: 100%;
+  height: 100%;
+}
+
+.tutorials-teachers-card-container:hover a button {
+  opacity: 1;
+}
+
+.tutorials-teachers-card-container a {
+  color: black;
+}
+
+.tutorials-teachers-image-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.tutorials-teachers-body-container {
+  padding: 15px;
+}
+
+.tutorials-teachers-body-container span {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tutorials-teachers-body-container small:nth-child(2) {
+  display: block;
+  margin-top: auto;
+}
+
+/* END Tutorials Teachers Page */
+/* Start Tutorials Videos Page */
+.tutorials-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.tutorials-header .btn-collage{
+  border-radius: 5px!important;
+}
+
+.tutorials-header .title-text {
+  font-size: 30px;
+}
+
+.tutorials-header span:last-child {
+  margin-bottom: 30px;
+}
+
+.btn-collage {
+  color: white;
+  background-color:#0688c3;
+  border: none;
+  border-color: rgba(39, 94, 177, 0.8);
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  outline-style: none;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  border-radius: 0px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.btn-collage:hover {
+  background-color: #0475a9;
+  color: white;
+}
+
+.videos-container {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.videos-container ul {
+  list-style: none;
+  height: 430px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 0px !important;
+}
+
+.videos-container ul::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.videos-container ul::-webkit-scrollbar-track {
+  background: white;
+}
+
+.videos-container ul::-webkit-scrollbar-thumb {
+  background: rgb(184, 184, 184);
+}
+
+.videos-container span {
+  text-align: center;
+  background-color: rgba(219, 219, 219, 0.774);
+  color: black;
+  cursor: inherit;
+  padding: 10px 0px;
+  margin-bottom: 0px;
+  display: block;
+}
+
+.videos-container ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.videos-container ul a {
+  color: black;
+  padding: 10px;
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  background-color: rgba(248, 248, 248, 0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.video-container {
+  width: 100%;
+  position: relative;
+}
+
+.video-container video {
+  cursor: pointer;
+  position: relative;
+  width:100%;
+}
+
+.video-list-active {
+  background-color: rgba(39, 94, 177, 0.8) !important;
+  color: white !important;
+}
+
+.video-list-active a {
+  color: white !important;
+}
+
+.video-display-container > span {
+  display: inline-block;
+  padding: 10px 0px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.download-video-btn {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 5px
+}
+.download-video-btn a {
+  border-radius: 5px;
+  width: 25%;
+  text-align: center
+
+}
+
+.arrows-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.arrows-container span {
+  display: inline-block;
+  background-color: #0688c3;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.arrows-container span:hover {
+  background-color: #275eb1;
+}
+
+.fa-arrow-left, .fa-arrow-right {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.arrows-container span:hover .fa-arrow-left {
+  -webkit-transform: translateX(-10px);
+          transform: translateX(-10px);
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+.arrows-container span:hover .fa-arrow-right {
+  -webkit-transform: translateX(10px);
+          transform: translateX(10px);
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+@media (max-width: 992px) {
+  #display-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .download-video-btn {
+    justify-content: center
+  }
+  .download-video-btn a {
+    width: 100%
+  }
+}
+
+@media (max-width: 768px) {
+  .tutorials-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .tutorials-teachers-body-container span {
+    font-size: 13px;
+  }
+  .tutorials-header .title-text {
+    font-size: 20px;
+  }
+  .video-time {
+    font-size: 14px;
+  }
+  #icons-video ul li:last-child {
+    width: 36%;
+  }
+  #icons-video ul li:last-child input[type="range"] {
+    width: 100%;
+  }
+  .download-fullScreen a, .download-fullScreen button {
+    width: 20%;
+  }
+}
+
+/* END Tutorials Videos Page */
+/* Start Control Panel Page */
+.control-panel-list {
+  border: 1px solid lightgray;
+  list-style: none;
+}
+
+.control-panel-list li {
+  border-bottom: 1px solid lightgray;
+  display: block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.adding-contents {
+  -webkit-transform: translateY(-200px);
+          transform: translateY(-200px);
+  opacity: 0;
+}
+.adding-contents  button {
+  border-radius: 5px!important;
+}
+.adding-contents  label{
+  border-radius: 5px!important;
+}
+.displayAdding {
+  -webkit-transform: translateY(0px) !important;
+          transform: translateY(0px) !important;
+  opacity: 1 !important;
+}
+
+.active-li-a {
+  background: #0688c3;
+}
+
+.active-li-a a {
+  color: white;
+}
+
+/* End Control Panel Page */
+.profile-container {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.profile-container hr {
+  width: 90%;
+}
+
+.username-container h2 {
+  padding-bottom: 10px;
+}
+
+.username-container p {
+  padding-bottom: 10px;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 5px 10px 1px #0000003d;
+          box-shadow: 0px 5px 10px 1px #0000003d;
+}
+
+.courses-selected {
+  display: inline-block;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 5px 5px 1 lightgray;
+          box-shadow: 0 5px 5px 1 lightgray;
+  padding: 5px 15px;
+}
+
+.edit-button {
+  cursor: pointer;
+  color: white;
+  background-color: rgba(39, 94, 177, 0.8);
+  border: none;
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 5px;
+  outline-style: none;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  margin-top: 5px;
+  width: 30%;
+  margin-top: 33px;
+}
+
+.edit-button:hover {
+  background-color: #275eb1;
+}
+
+.profile-files {
+  max-height: 600px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.profile-files::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.profile-files::-webkit-scrollbar-track {
+  background: white;
+}
+
+.profile-files::-webkit-scrollbar-thumb {
+  background: rgba(0, 84, 211, 0.616);
+}
+.noFile {
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.noFile h5 {
+  position:relative;
+  padding: 5px;
+  font-size: 25px;
+}
+.noFile h5:after {
+  content:"";
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  width:100%;
+  border: 1px solid lightgray;
+
+}
+.cancel-button {
+  color: darkred!important;
+  background: none;
+  border: 1px solid darkred;
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 5px;
+  outline-style: none;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  margin-top: 5px;
+  width: 25%;
+  margin-top: 33px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.cancel-button:hover {
+  background-color: red;
+  color: white!important;
+}
+@media (max-width: 1020px) {
+  #changePass-btn {
+    width: 42% !important;
+    font-size: 13px;
+    padding: 10px!important;
+
+}
+}
+/*# sourceMappingURL=style.css.map */
+/* Start Teacher COntrol Panel Page */
+.control-panel-list {
+  border: 1px solid lightgray;
+  list-style: none;
+  border-radius: 10px;
+}
+
+.control-panel-list li {
+  border-bottom: 1px solid lightgray;
+  border-radius: 5px;
+  display: block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.adding-contents {
+  -webkit-transform: translateY(-200px);
+          transform: translateY(-200px);
+  opacity: 0;
+  display: none;
+}
+
+.displayAdding {
+  -webkit-animation: display-forms 0.5s ease forwards;
+          animation: display-forms 0.5s ease forwards;
+  display: block !important;
+}
+
+.forms-display {
+  border: 1px solid lightgray;
+  padding: 0px 30px;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 200px;
+}
+
+.forms-display ul {
+  list-style: none;
+  padding: 10px;
+}
+
+.forms-display ul li {
+  margin: 10px 0px;
+  margin: 10px 0px;
+  padding: 10px 0px;
+  border-bottom: 1px solid lightgray;
+}
+
+.forms-display #file {
+  display: none;
+}
+
+.forms-display label {
+  cursor: pointer;
+  z-index: 10;
+  background: #0688c3;
+}
+
+.forms-display select {
+  display: block;
+}
+
+.forms-display .title-text {
+  margin: 12px 0px 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.forms-display .add-forms-button {
+  position: relative;
+  height: 50px;
+}
+
+.forms-display .add-forms-button button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.add-tutorial-form {
+  position: relative;
+}
+
+.programFile {
+  z-index: -1;
+  position: absolute;
+  left: 61px;
+  outline-style: none;
+}
+
+.imgFile {
+  z-index: -1;
+  position: absolute;
+  left: 46px;
+  outline-style: none;
+}
+#addingTeacherFille.imgFile {
+  z-index: -1;
+  position: absolute;
+  left: 86px;
+  outline-style: none;
+}
+
+.adding-contents label {
+  cursor: pointer;
+  z-index: 10;
+  background: #0686c0;
+}
+
+.video-upload-button {
+  position: relative;
+}
+
+.video-upload-button .videoFile {
+  display: none;
+}
+
+.video-upload-button label {
+  cursor: pointer;
+  z-index: 10;
+  background: #0686c0;
+}
+
+@-webkit-keyframes display-forms {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    display: block;
+  }
+}
+
+@keyframes display-forms {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    display: block;
+  }
+}
+
+.active-li-a a:hover {
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .control-panel-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-flow: wrap;
+        flex-flow: wrap;
+    border: none;
+  }
+  .control-panel-list li {
+    border: 1px solid lightgray;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px 0px 0px;
+  }
+  .adding-contents {
+    -webkit-transform: translateY(200px);
+            transform: translateY(200px);
+  }
+}
+
+/* End Teacher COntrol Panel Page */
+
+
+
+/* Start Control Panel */
+
+.register-form #imgFile {
+  z-index: -1;
+  position: absolute;
+  left: 85px;
+  outline-style: none;
+}
+
+
+.course-form #courseImgFile {
+  z-index: -1;
+  position: absolute;
+  left: 86px;
+  outline-style: none;
+}
+
+.activity-form .activityImg{
+  z-index: -1;
+  position: absolute;
+  left: 87px;
+  outline-style: none;
+}
+
+/* End Control Panel */
+.filesScroll-bar{
+  max-height: 200px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.filesScroll-bar::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.filesScroll-bar::-webkit-scrollbar-track {
+  background: white;
+}
+
+.filesScroll-bar::-webkit-scrollbar-thumb {
+  background: rgba(0, 84, 211, 0.616);
+}
+
+.filesScroll-bar li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.filesScroll-bar li .delete-times {
+  color: #e60202;
+  font-size: 23px;
+}
+#changePassword{
+  display: none;
+}
+.imgUpload{
+  display: none;
+}
+.imgUpload input{
+  left: 88px;!important;
+}
+
+
+.videos-container ul li  input[type="checkbox"] {
+  display: none;
+}
+.select-all {
+    display: none;
+}
+#downloadAllVideos {
+    display: none;
+    width: 100% !important;
+}
+
+#checkbox:checked ~ #downloadAllVideos {
+    display: block;
+}
+@media(max-width: 892px) {
+    #downloadAllVideos {
+        width: 30% !important;
+    }
+}
+.check-and-downloadBtn-container .btn-collage {
+  border-radius: 5px;
+}
+.errorlist{
+  list-style-type: none;
+}
+/*Start suggestion/Complaints*/
+.suggestion-container {
+  padding: 3px 5px;
+  position: relative;
+  text-align: right;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+.suggestion-container  p {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  display:inline-block;
+  min-height:20px;
+  margin: 0;
+  line-height: 24px;
+  width: 100%;
+}
+.date-and-deleteBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+  margin-top: 30px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}
+.suggestion-container span{
+  color: #005cbf;
+  cursor: pointer;
+  font-size: 15px;
+  float: left;
+}
+/*END suggestion/Complaints*/
+/* Start Programs Page */
+
+
+.programsTitle-search-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.programsTitle-search-bar-container form {
+  border-bottom: 1px solid #0688c3;
+}
+.programsTitle-search-bar-container form button {
+  border: none;
+  color: #0688c3;
+  background: transparent;
+}
+.programsTitle-search-bar-container form input {
+  border: none;
+  background-color: transparent;
+  outline-style: none;
+  width: 91%;
+}
+@media (min-width: 1024px) {
+  .programsTitle-search-bar-container form {
+    width: 30%;
+  }
+  .programsTitle-search-bar-container form input{
+    width: 91%;
+  }
+}
+@media (min-width: 775px) and (max-width: 990px){
+  .programsTitle-search-bar-container form {
+    width: 30%;
+  }
+  .programsTitle-search-bar-container form input{
+    width: 92%;
+  }
+}
+@media(max-width: 770px) {
+  .programsTitle-search-bar-container {
+    flex-direction: column;
+    height: 95px;
+  }
+  .programsTitle-search-bar-container .title-text {
+    margin-bottom: 10px!important;
+  }
+  .programsTitle-search-bar-container form {
+    width: 90%;
+  }
+  .programsTitle-search-bar-container form input {
+    width: 95.50%;
+  }
+}
+@media (max-width: 438px) {
+  .programsTitle-search-bar-container form input {
+    width: 93%;
+  }
+}
+/* End Programs Page */
