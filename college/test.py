@@ -1,0 +1,1 @@
+print(['hello', 'hey'] + ['aa', 'eewew'])

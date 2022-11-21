@@ -1,0 +1,22 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block slideshow %}
+{% endblock slideshow %}
+{% block cards %}
+    <span class="title-text">{{ head }}:</span data-scroll>
+          <div class="row">
+              {% for semester in semesters %}
+                  <div class="col-11 ml-3 ml-sm-0 mt-2 col-sm-1 col-md-6 col-lg-6" data-scroll>
+                      <a href="{% url 'courses' major level semester.semester %}">
+                          <div class="basic-card">
+                              <div class="basic-card-image-container">
+                                    <img src="{{ semester.semester_image.url}}">
+                              </div>
+                              <div class="basic-card-title btn-collage w-100">{{ semester.semester }} Semester</div>
+                          </div>
+
+                      </a>
+                  </div>
+              {% endfor %}
+        </div>
+{% endblock cards %}

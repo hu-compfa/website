@@ -1,0 +1,65 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block slideshow %}
+{% endblock slideshow %}
+{% block cards %}
+    <div class="tutorials-header">
+                <span class="title-text">{{ video.tutorialsteacher.tutorials_name }}</span>
+                <ul style="display: none"  class="video-container-none">
+                    {% for next in tutorials_video %}
+                               <a class="video-link" href="{{ next.video.url }}" download="{{ next.video.url }}">
+                                {{ next.video_name }}<input type="checkbox" class="form-control col-1"></a>
+                        {% endfor %}
+                </ul>
+            </div>
+            <div class="row" id="display-container">
+
+                <div class="mt-4 mt-sm-4 mt-lg-0 col-12 col-sm-12 col-md-12 col-lg-3">
+                  <!-- <div class="check-and-downloadBtn-container">
+                    <label for="checkbox">Select Videos</label>
+                    <input type="checkbox"   id="checkbox"> <span class="select-all">Select All <input type="checkbox" ></span>
+                    <button class="btn-collage mb-2" id="downloadAllVideos">Download </button>
+                  </div> -->
+                    <div class="videos-container">
+                      <span>Videos</span>
+                      <ul {% if tutorials_video.count > 9 %}style="overflow-y: scroll;"{% endif %}>
+                        {% for next in tutorials_video %}
+                            {% url 'tutorials_video_page' next.tutorialsteacher.tutorials next.tutorialsteacher.slug  next.slug as video_url %}
+                               <li class="{% if current_video == video_url  %}video-list-active{% endif %}"><a  href="{% url 'tutorials_video_page' next.tutorialsteacher.tutorials next.tutorialsteacher.slug  next.slug %}">
+                                {{ next.video_name }}</a><input type="checkbox" class="form-control col-1"></li>
+                        {% endfor %}
+                    </ul>
+                    </div>
+                </div>
+                <div class="p-0 p-sm-2 col-12 col-sm-12 col-md-12 col-lg-9">
+                    <div class="video-display-container">
+                        <div class="video-container">
+                            <video controls playsinline preload="metadata" width="100%" height="100%" autoplay>
+                              <source src="{{ video.video.url }}">
+                            </video>
+                        </div>
+                        <div class="video-name-and-download">
+                          <h6 class="p-2">{{ video.video_name }}</h6>
+                        </div>
+                        <div class="download-video-btn">
+                          <a href="{{video.video.url}}" download="{{ video.video_name }}" class="btn-collage ">Download <i class="fa fa-download"></i></a>
+                        </div>
+                        <div class="arrows-container mt-3 p-2">
+                          {% if the_previous != None %}
+                              <a href="{% url 'tutorials_video_page' the_previous.tutorialsteacher.tutorials the_previous.tutorialsteacher.slug  the_previous.slug %}"><span><i class="fa fa-arrow-left"></i> Previoes</span></a>
+                          {% else %}
+                              <div></div>
+                          {% endif %}
+                          {% if the_next != None %}
+                              <a href="{% url 'tutorials_video_page' the_next.tutorialsteacher.tutorials the_next.tutorialsteacher.slug  the_next.slug %}"><span>Next <i class="fa fa-arrow-right"></i></span></a>
+                          {% else %}
+                              <div></div>
+                          {% endif %}
+                      </div>
+                    </div>
+                </div>
+            </div>
+{% endblock cards %}
+{% block jsfiles %}
+    <!-- <script src="{% static 'website/js/videos-selected.js'%}"></script> -->
+{% endblock jsfiles %}
