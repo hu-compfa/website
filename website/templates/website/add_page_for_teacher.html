@@ -1,0 +1,109 @@
+{% extends 'website/base.html' %} {% load static %} {% block slideshow %}
+{% endblock slideshow %} {% block cards %}
+<div class="row">
+	<div class="col-12 col-sm-12 col-md-4 col-lg-3">
+		<ul class="control-panel-list">
+			<li class="add-items-bar active-li-a"><a class="">Add Lecture</a></li>
+		</ul>
+	</div>
+
+	<!-- Start Add Course -->
+	<div class="col-12 col-sm-12 col-md-8 col-lg-9">
+		<div class="adding-contents displayAdding">
+			{% if messages %} {% for message in messages %}
+			<div class="alert alert-{{ message.tags }} w-75 mt-2">{{ message }}</div>
+			{% endfor %} {% endif %}
+			<div class="col-12 col-sm-12 col-lg-8">
+				<div class="forms-display">
+					<span class="title-text">New Lecture </span>
+					<form method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						<input
+							type="file"
+							id="file"
+							class="file-custom"
+							required
+							name="lecture_url"
+							accept="*/*"
+							multiple
+							onchange="javascript:updateList('file','file-name-list')"
+						/>
+						<label for="file" class="btn-collage"
+							>Upload lecture/s<sup>&plus;</sup></label
+						>
+						<ul id="file-name-list"></ul>
+						<select
+							name="level"
+							id="selectLevel"
+							class="form-control col-md-8 mb-2"
+							data-url="{% url 'load_courses' %}"
+							required
+							onchange="checkNames('selectLevel','selectCourse')"
+						>
+							<option value="" selected disabled>
+								Select level that course belong
+							</option>
+							{% for level in levels %}
+							<option value="{{ level.id }}">{{ level.level }}</option>
+							{% endfor %}
+						</select>
+						<select
+							name="course"
+							id="selectCourse"
+							class="form-control col-md-8 mb-2"
+							required
+						>
+							<option value="" selected disabled>
+								Select course that lecture belong
+							</option>
+						</select>
+						<!-- <select name="teacher" class="form-control col-md-8 mb-2" required >
+                        <option value="{{ teacher.id }}" >Teacher: {{ teacher.teacher_name }}</option>
+                    </select> -->
+						<div class="add-forms-button">
+							<button
+								type="submit"
+								class="btn-collage float-right"
+								name="lecture"
+							>
+								ADD
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock cards %} {% block jsfiles %}
+<script>
+	updateList = function (fileIn, fileOut) {
+		var input = document.getElementById(fileIn);
+		var output = document.getElementById(fileOut);
+		var children = '';
+		for (var i = 0; i < input.files.length; ++i) {
+			children += '<li>' + input.files.item(i).name + '</li>';
+		}
+		output.innerHTML =
+			'<ul style="display: block" class="filesScroll-bar">' +
+			children +
+			'</ul>';
+	};
+	function checkNames(idSelectInput, idSelectOutput) {
+		var url = $('#' + idSelectInput).attr('data-url'); // get the url of the `load_cities` view
+		var key = $('#' + idSelectInput).val(); // get the selected country ID from the HTML input
+
+		$.ajax({
+			// initialize an AJAX request
+			url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+			data: {
+				key: key, // add the country id to the GET parameters
+			},
+			success: function (data) {
+				// `data` is the return of the `load_cities` view function
+				$('#' + idSelectOutput).html(data); // replace the contents of the city input with the data that came from the server
+			},
+		});
+	}
+</script>
+{% endblock jsfiles %}

@@ -1,0 +1,55 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block form %}
+    <form method="get">
+        <input type="text" name="tutorial_containe" placeholder="Looking for Tutorial.?"><button type="submit" ><i class="fa fa-search"></i></button>
+    </form>
+{% endblock form %}
+{% block slideshow %}
+{% endblock slideshow %}
+{% block cards %}
+    <span class="title-text">{{ head }}</span>
+        <div class="row">
+        {% if filter.qs.count == TutorialsTeacher.all.count %}
+            {% for tutorial in tutorials %}
+                {% if tutorial.tutorialsteacher_set.all.count == 0 %}
+                {% else %}
+                  <div class="col-6 mt-3 col-sm-6 col-md-4 col-lg-3">
+                    <a href="{% url 'tutorials_teacher' tutorial.tutorials_name %}" class="tutorials-card">
+                      <div class="tutorial-image-container">
+                          <h5>{{ tutorial.tutorials_name }} Tutorials</h5>
+                          <img src="{{ tutorial.tutorials_image.url }}">
+                      </div>
+                    </a>
+                  </div>
+                {% endif %}
+            {% endfor %}
+        {% elif filter.qs.count == 0 %}
+            <h2 class="ml-5">We don't find the tutorial. (╥﹏╥)</h2>
+        {% else %}
+            {% for teacher in filter.qs %}
+                {% if teacher.tutorialsvideos_set.all.count == 0 %}
+                {% else %}
+                    <div class="col-11 pl-5 col-sm-11 col-md-4 col-lg-3 p-sm-2 mt-3">
+                        <div class="tutorials-teachers-card-container">
+                            <a href="{% url 'tutorials_redirect_page' teacher.tutorials teacher.slug %}">
+                                <div class="tutorials-teachers-image-container">
+                                    <button class="btn btn-info  h-30" type="submit">Start Learing</button>
+                                    <img src="{{ teacher.tutorials_image.url }}" alt="python-image">
+                                </div>
+                                <div class="tutorials-teachers-body-container">
+                                    <span>
+                                            {{ teacher.tutorials_name }}
+                                    </span>
+                                    <small>{{ teacher.teacher_name }}</small>
+                                    <br>
+                                    <small><i class="fa fa-photo-video"></i> {{ teacher.tutorialsvideos_set.count}}</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        </div>
+{% endblock cards %}

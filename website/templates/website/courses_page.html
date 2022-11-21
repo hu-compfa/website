@@ -1,0 +1,24 @@
+{% extends 'website/base.html' %}
+{% block slideshow %}
+{% endblock slideshow %}
+{% block cards %}
+    <span class="title-text">{{ head }}:</span data-scroll>
+        <div class="row">
+              {% for course in courses %}
+                  {% if course.teacher_set.all.count == 0 %}
+                  {% else %}
+                  <div class="col-6 mt-2 col-sm-6 col-md-3" data-scroll>
+                      <a href="{% url 'teacher' major level semester course.slug %}">
+                          <div class="basic-card">
+                              <div class="basic-card-image-container">
+                                    <img src="{{ course.Course_image.url }}">
+                              </div>
+                              <div class="basic-card-title btn-collage w-100">{{ course.course_name }}</div>
+                          </div>
+
+                      </a>
+                  </div>
+                  {% endif %}
+              {% endfor %}
+      </div>
+{% endblock cards %}

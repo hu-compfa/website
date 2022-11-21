@@ -1,0 +1,25 @@
+{% extends 'website/base.html' %}
+{% block slideshow %}
+{% endblock slideshow %}
+{% block cards %}
+    <div class="programsTitle-search-bar-container">
+        <span class="title-text mb-2">{{ head }}</span>
+        <form method="get">
+            <input type="text" name="program_containe" placeholder="Visual Studio, Pycharm..."><button type="submit" ><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    <div class="lecture-container mt-4">
+        <div class="profile-files">
+				{% if filter.qs.count == 0%}
+					<h5 class="text-center">There's nothing here at the moment! ಠ_ಠ</h5>
+				{% endif %}
+            <div class="row">
+                {% for program in filter.qs %}
+                    <div class="col-9 col-md-10" style="word-break: break-word">{{program.program_name}}</div>
+                    <div class="col-2 col-md-2"><a href="{{ program.program_file.url }}" download="{{program.program_name}}"><i class="fa fa-download"></i></a></div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock cards %}
